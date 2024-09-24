@@ -191,6 +191,19 @@ func decodeJumpCloudEvents(raw []byte) (JumpCloudEvents, error) {
 				continue
 			}
 			finished.Admin = append(finished.Admin, e)
+		case "password_manager": // New case for password manager events
+			b, err := json.Marshal(generic[i])
+			if err != nil {
+				fmt.Printf("Error marshalling Password Manager generic event - will continue: %v\n", err)
+				continue
+			}
+			var e JumpCloudPasswordManagerEvent
+			err = json.Unmarshal(b, &e)
+			if err != nil {
+				fmt.Printf("Error unmarshalling Password Manager detailed event - will continue: %v\n", err)
+				continue
+			}
+			finished.PasswordManager = append(finished.PasswordManager, e)
 
 		}
 	}
