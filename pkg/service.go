@@ -69,6 +69,14 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 		if writeErr != nil {
 			fmt.Printf("Error writing to file: %s", writeErr.Error())
 		}
+	for _, x := range e.PasswordManager {
+		if x.Timestamp.After(lastEventSeen) {
+			lastEventSeen = x.Timestamp
+		}
+		_, writeErr := f.WriteString(x.convertToWazuhString() + "\n")
+		if writeErr != nil {
+			fmt.Printf("Error writing to file: %s", writeErr.Error())
+		}
 
 	}
 	err = timeTracker.UpdateLast(lastEventSeen.Add(time.Second * 1))
