@@ -280,3 +280,48 @@ type JumpCloudAdminEvent struct {
 	ID           string    `json:"id"`
 	Timestamp    time.Time `json:"timestamp"`
 }
+
+type JumpCloudPasswordManagerEvent struct {
+	EventType    string    `json:"event_type"`   // The type of event (password management)
+	Success      bool      `json:"success"`      // Success or failure of the operation
+	Service      string    `json:"service"`      // The service involved in the event (password manager)
+	Organization string    `json:"organization"` // Organization identifier
+	Version      string    `json:"@version"`     // Log version
+	ClientIP     string    `json:"client_ip"`    // Client IP address for the event
+	ID           string    `json:"id"`           // Unique identifier for the event
+	Timestamp    time.Time `json:"timestamp"`    // Timestamp of the event
+	Username     string    `json:"username"`     // Username associated with the event
+	Operation    string    `json:"operation"`    // The operation performed (e.g., password reset, update)
+	ErrorMessage string    `json:"error_message,omitempty"` // Error message if any
+
+	InitiatedBy struct { // Who initiated the event
+		ID       string `json:"id"`
+		Type     string `json:"type"`
+		Email    string `json:"email"`
+		Username string `json:"username"`
+	} `json:"initiated_by"`
+
+	GeoIP struct { // Geolocation info for the event
+		CountryCode   string  `json:"country_code"`
+		Timezone      string  `json:"timezone"`
+		Latitude      float64 `json:"latitude"`
+		Longitude     float64 `json:"longitude"`
+		ContinentCode string  `json:"continent_code"`
+		RegionName    string  `json:"region_name"`
+		RegionCode    string  `json:"region_code"`
+	} `json:"geoip"`
+
+	Resource struct { // Resource information related to the event
+		Name string `json:"name"`
+		ID   string `json:"id"`
+		Type string `json:"type"`
+	} `json:"resource"`
+
+	UserAgent struct { // Information about the user's system
+		OsFull  string `json:"os_full"`
+		Os      string `json:"os"`
+		Name    string `json:"name"`
+		OsName  string `json:"os_name"`
+		Device  string `json:"device"`
+	} `json:"useragent"`
+}
