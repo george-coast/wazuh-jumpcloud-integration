@@ -93,6 +93,7 @@ type JumpCloudEvents struct {
 	Radius    []JumpCloudRadiusEvent    `json:"radius"`
 	SSO       []JumpCloudSSOEvent       `json:"sso"`
 	Admin     []JumpCloudAdminEvent     `json:"admin"`
+	PasswordManager   []JumpCloudPasswordManagerEvent  `json:"password_manager_events"`
 }
 
 type BaseJumpCloudEvent struct {
