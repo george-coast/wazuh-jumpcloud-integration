@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/lbrictson/wazuh-jumpcloud-integration/pkg"
+	"github.com/george-coast/wazuh-jumpcloud-integration/pkg"
 	"os"
 )
 
