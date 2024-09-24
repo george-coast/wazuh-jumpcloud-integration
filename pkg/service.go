@@ -14,6 +14,59 @@ type TimeTracker interface {
 type JumpCloudConnector interface {
 	GetEventsSinceTime(time.Time) (*JumpCloudEvents, error)
 }
+func (e JumpCloudLDAPEvent) convertToWazuhString() string {
+	return fmt.Sprintf("LDAP Event at %s: %s, Success: %t", e.Timestamp, e.ErrorMessage, e.Success)
+}
+
+// Similarly, add for other event types...
+
+type JumpCloudSystemEvent struct {
+	// Fields as before...
+}
+
+func (e JumpCloudSystemEvent) convertToWazuhString() string {
+	return fmt.Sprintf("System Event at %s: %s, Success: %t", e.Timestamp, e.Message, e.Success)
+}
+
+type JumpCloudDirectoryEvent struct {
+	// Fields as before...
+}
+
+func (e JumpCloudDirectoryEvent) convertToWazuhString() string {
+	return fmt.Sprintf("Directory Event at %s: %s, Success: %t", e.Timestamp, e.ErrorMessage, e.Success)
+}
+
+type JumpCloudRadiusEvent struct {
+	// Fields as before...
+}
+
+func (e JumpCloudRadiusEvent) convertToWazuhString() string {
+	return fmt.Sprintf("Radius Event at %s: %s, Success: %t", e.Timestamp, e.ErrorMessage, e.Success)
+}
+
+type JumpCloudSSOEvent struct {
+	// Fields as before...
+}
+
+func (e JumpCloudSSOEvent) convertToWazuhString() string {
+	return fmt.Sprintf("SSO Event at %s: %s, Success: %t", e.Timestamp, e.ErrorMessage, e.Success)
+}
+
+type JumpCloudAdminEvent struct {
+	// Fields as before...
+}
+
+func (e JumpCloudAdminEvent) convertToWazuhString() string {
+	return fmt.Sprintf("Admin Event at %s: %s", e.Timestamp, e.JumpCloudEventType)
+}
+
+type JumpCloudPasswordManagerEvent struct {
+	// Fields as before...
+}
+
+func (e JumpCloudPasswordManagerEvent) convertToWazuhString() string {
+	return fmt.Sprintf("Password Manager Event at %s: %s, Success: %t", e.Timestamp, e.Operation, e.Success)
+}
 
 // RunService is the main entry point for the service. It will run a single time and return an error if one is encountered.
 func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile string) error {
