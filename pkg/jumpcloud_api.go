@@ -96,6 +96,48 @@ type JumpCloudEvents struct {
 	PasswordManager   []JumpCloudPasswordManagerEvent  `json:"password_manager_events"`
 }
 
+type JumpCloudPasswordManagerEvent struct {
+	InitiatedBy struct {
+		ID       string `json:"id"`
+		Type     string `json:"type"`
+		Email    string `json:"email"`
+		Username string `json:"username"`
+	} `json:"initiated_by"`
+
+	GeoIP struct {
+		CountryCode   string  `json:"country_code"`
+		Timezone      string  `json:"timezone"`
+		Latitude      float64 `json:"latitude"`
+		ContinentCode string  `json:"continent_code"`
+		RegionName    string  `json:"region_name"`
+		Longitude     float64 `json:"longitude"`
+		RegionCode    string  `json:"region_code"`
+	} `json:"geoip"`
+
+	EventType    string `json:"event_type"`
+	Resource     struct {
+		Name string `json:"name"`
+		ID   string `json:"id"`
+		Type string `json:"type"`
+	} `json:"resource"`
+
+	Success      bool   `json:"success"`
+	Service      string `json:"service"`
+	Organization string `json:"organization"`
+	UserAgent    struct {
+		OSFull   string `json:"os_full"`
+		OS       string `json:"os"`
+		Name     string `json:"name"`
+		OSName   string `json:"os_name"`
+		Device   string `json:"device"`
+	} `json:"useragent"`
+
+	Version   string `json:"@version"`
+	ClientIP  string `json:"client_ip"`
+	ID        string `json:"id"`
+	Timestamp string `json:"timestamp"`
+}
+
 type BaseJumpCloudEvent struct {
 	Service string `json:"service"`
 }
