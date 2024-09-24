@@ -93,10 +93,10 @@ type JumpCloudEvents struct {
 	Radius    []JumpCloudRadiusEvent    `json:"radius"`
 	SSO       []JumpCloudSSOEvent       `json:"sso"`
 	Admin     []JumpCloudAdminEvent     `json:"admin"`
-	PasswordManager   []JumpCloudPasswordManagerEvent  `json:"password_manager_events"`
+	PasswordManager   []JumpCloudPasswordManagerEventAPI  `json:"password_manager_events"`
 }
 
-type JumpCloudPasswordManagerEvent struct {
+type JumpCloudPasswordManagerEventAPI struct {
 	InitiatedBy struct {
 		ID       string `json:"id"`
 		Type     string `json:"type"`
@@ -240,7 +240,7 @@ func decodeJumpCloudEvents(raw []byte) (JumpCloudEvents, error) {
 				fmt.Printf("Error marshalling Password Manager generic event - will continue: %v\n", err)
 				continue
 			}
-			var e JumpCloudPasswordManagerEvent
+			var e JumpCloudPasswordManagerEventAPI
 			err = json.Unmarshal(b, &e)
 			if err != nil {
 				fmt.Printf("Error unmarshalling Password Manager detailed event - will continue: %v\n", err)
