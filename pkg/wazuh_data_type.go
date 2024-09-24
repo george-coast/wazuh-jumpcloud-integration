@@ -10,11 +10,7 @@ func (d *JumpCloudSystemEvent) convertToWazuhString() string {
 	return string(b)
 }
 
-func (d *JumpCloudLDAPEvent) convertToWazuhString() string {
-	d.JumpCloudEventType = "ldap"
-	b, _ := json.Marshal(d)
-	return string(b)
-}
+
 
 func (d *JumpCloudDirectoryEvent) convertToWazuhString() string {
 	d.JumpCloudEventType = "directory"
