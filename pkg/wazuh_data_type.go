@@ -39,3 +39,9 @@ func (d *JumpCloudAdminEvent) convertToWazuhString() string {
 	b, _ := json.Marshal(d)
 	return string(b)
 }
+
+func (d *JumpCloudPasswordManagerEvent) convertToWazuhString() string {
+    d.JumpCloudEventType = "password_manager"
+    b, _ := json.Marshal(d)
+    return string(b)
+}
