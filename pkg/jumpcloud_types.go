@@ -40,9 +40,7 @@ type JumpCloudLDAPEvent struct {
 	Attr            string    `json:"attr,omitempty"`
 	Base            string    `json:"base,omitempty"`
 }
-func (e JumpCloudLDAPEvent) convertToWazuhString() string {
-	return fmt.Sprintf("LDAP Event at %s: %s, Success: %t", e.Timestamp, e.ErrorMessage, e.Success)
-}
+
 
 // Similarly, add for other event types...
 
