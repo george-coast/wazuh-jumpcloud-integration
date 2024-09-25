@@ -3,6 +3,7 @@ package pkg
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // Convert to Wazuh string for various event types
