@@ -35,7 +35,7 @@ type JumpCloudLDAPEvent struct {
     ID              string    `json:"id"`
     OperationNumber int       `json:"operation_number"`
     Operation       string    `json:"operation"`
-    Timestamp       time.Time `json:"timestamp"`
+    Timestamp      CustomTime `json:"timestamp"`
     Username        string    `json:"username"`
     Deref           int       `json:"deref,omitempty"`
     Filter          string    `json:"filter,omitempty"`
@@ -77,7 +77,7 @@ type JumpCloudSystemEvent struct {
     SystemTimestamp time.Time `json:"system_timestamp,omitempty"`
     ID              string    `json:"id"`
     Operation       string    `json:"operation"`
-    Timestamp       time.Time `json:"timestamp"`
+    Timestamp      CustomTime `json:"timestamp"`
     Username        string    `json:"username,omitempty"`
     ProcessName     string    `json:"process_name,omitempty"`
     WindowsMeta     struct {
@@ -144,7 +144,7 @@ type JumpCloudDirectoryEvent struct {
     ClientIP     string    `json:"client_ip,omitempty"`
     ID           string    `json:"id"`
     Operation    string    `json:"operation"`
-    Timestamp    time.Time `json:"timestamp"`
+    Timestamp  CustomTime  `json:"timestamp"`
 }
 
 type JumpCloudRadiusEvent struct {
@@ -191,7 +191,7 @@ type JumpCloudRadiusEvent struct {
     ID           string    `json:"id"`
     Username     string    `json:"username"`
     Operation    string    `json:"operation"`
-    Timestamp    time.Time `json:"timestamp"`
+    Timestamp   CustomTime `json:"timestamp"`
 }
 
 type JumpCloudSSOEvent struct {
@@ -230,7 +230,7 @@ type JumpCloudSSOEvent struct {
     ID           string    `json:"id"`
     Username     string    `json:"username"`
     Operation    string    `json:"operation"`
-    Timestamp    time.Time `json:"timestamp"`
+    Timestamp   CustomTime `json:"timestamp"`
 }
 
 type JumpCloudPasswordManagerEvent struct {
@@ -255,6 +255,6 @@ type JumpCloudPasswordManagerEvent struct {
     ID           string    `json:"id"`
     Username     string    `json:"username"`
     Operation    string    `json:"operation"`
-    Timestamp    string      `json:"timestamp"`
+    Timestamp   CustomTime `json:"timestamp"`
     Operation    string    `json:"operation"`
 }
