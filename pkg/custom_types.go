@@ -46,7 +46,7 @@ func handleLogs(events []JumpCloudPasswordManagerEvent) {
     someTime := time.Now().Add(-48 * time.Hour) // Define reference time
 
     for _, x := range events {
-        if x.Timestamp.ToTime().After(someTime) {
+        if x.Timestamp.ToTime().After(time.Now()) {
             // Logic for handling recent events
             fmt.Println("Recent event found:", x)
             // Add your processing logic here
