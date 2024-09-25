@@ -286,6 +286,7 @@ type JumpCloudAdminEvent struct {
 }
 
 type JumpCloudPasswordManagerEvent struct {
+	JumpCloudEventType string    `json:"jumpcloud_event_type"`
 	EventType    string    `json:"event_type"`   // The type of event (password management)
 	Success      bool      `json:"success"`      // Success or failure of the operation
 	Service      string    `json:"service"`      // The service involved in the event (password manager)
