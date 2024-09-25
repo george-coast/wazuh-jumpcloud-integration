@@ -32,10 +32,7 @@ func (ct *CustomTime) UnmarshalJSON(b []byte) error {
     return nil
 }
 // JumpCloudPasswordManagerEvent represents an event with a timestamp
-type JumpCloudPasswordManagerEvent struct {
-    Timestamp CustomTime // Your struct may have additional fields
-    // Other fields...
-}
+
 
 func (ct CustomTime) After(t time.Time) bool {
     return ct.Time.After(t)
