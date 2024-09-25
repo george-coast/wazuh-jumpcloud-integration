@@ -24,7 +24,8 @@ func (d *JumpCloudAdminEvent) convertToWazuhString() string {
 }
 
 func (e *JumpCloudPasswordManagerEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
+    return fmt.Sprintf("JumpCloud Password Manager Event: ID=%s, Username=%s, Service=%s, Operation=%s, Timestamp=%s",
+        e.ID, e.Username, e.Service, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
 func (e *JumpCloudSystemEvent) convertToWazuhString() string {
