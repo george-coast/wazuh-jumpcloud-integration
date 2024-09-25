@@ -12,29 +12,29 @@ import (
 
 // Convert to Wazuh string for various event types
 func (e *JumpCloudLDAPEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.OperationType, e.Timestamp)
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
 func (e *JumpCloudSSOEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.ErrorMessage, e.Timestamp)
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
 func (d *JumpCloudAdminEvent) convertToWazuhString() string {
-	return fmt.Sprintf("Admin Event: %s initiated by %s at %s", d.EventType, d.InitiatedBy.Username, d.Timestamp)
+	return fmt.Sprintf("Admin Event: %s initiated by %s at %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
 func (e *JumpCloudPasswordManagerEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp)
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
 func (e *JumpCloudSystemEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Message, e.Timestamp)
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 func (e *JumpCloudRadiusEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.AuthType, e.Timestamp)
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
 func (e *JumpCloudDirectoryEvent) convertToWazuhString() string {
-	return fmt.Sprintf("%s: %s on %s", e.EventType, e.ErrorMessage, e.Timestamp)
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
