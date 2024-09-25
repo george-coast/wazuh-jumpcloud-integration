@@ -1,7 +1,7 @@
 package pkg
 
 import (
-	"encoding/json"
+	
 	"fmt"
 	"time" // Ensure this is imported
 )
@@ -38,3 +38,6 @@ func (e *JumpCloudDirectoryEvent) convertToWazuhString() string {
 	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp.Format(time.RFC3339))
 }
 
+func (e *JumpCloudPasswordManagerEventAPI) convertToWazuhString() string {
+    return fmt.Sprintf("Event ID: %s, Timestamp: %s", e.ID, e.Timestamp.Format(time.RFC3339))
+}
