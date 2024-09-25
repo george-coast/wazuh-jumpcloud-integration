@@ -1,34 +1,48 @@
 package pkg
 
 import (
-    "time"
     "fmt"
+    "time"
 )
 
+// CustomTime is a custom type for handling time
 type CustomTime struct {
     time.Time
 }
 
-// UnmarshalJSON implements the json.Unmarshaler interface.
-func (ct *CustomTime) UnmarshalJSON(b []byte) error {
-    // Strip the quotes around the timestamp
-    s := string(b[1 : len(b)-1])
+// ToTime converts CustomTime to time.Time
+func (c *CustomTime) ToTime() time.Time {
+    return c.Time
+}
 
-    // Parse the time in the expected format
-    t, err := time.Parse(time.RFC3339, s) // Use your specific time format
-    if err != nil {
-        return err
+// JumpCloudPasswordManagerEvent represents an event with a timestamp
+type JumpCloudPasswordManagerEvent struct {
+    Timestamp CustomTime // Your struct may have additional fields
+    // Other fields...
+}
+
+// handleLogs processes an array of JumpCloudPasswordManagerEvent
+func handleLogs(events []JumpCloudPasswordManagerEvent) {
+    someTime := time.Now().Add(-48 * time.Hour) // Define reference time
+
+    for _, x := range events {
+        if x.Timestamp.ToTime().After(someTime) {
+            // Logic for handling recent events
+            fmt.Println("Recent event found:", x)
+            // Add your processing logic here
+        } else {
+            // Logic for older events
+            fmt.Println("Event is older than 48 hours:", x)
+        }
     }
-    ct.Time = t
-    return nil
 }
 
-// After is a method to compare CustomTime with another time.Time
-func (ct CustomTime) After(t time.Time) bool {
-    return ct.Time.After(t)
-}
+func main() {
+    // Example usage of handleLogs
+    events := []JumpCloudPasswordManagerEvent{
+        {Timestamp: CustomTime{Time: time.Now().Add(-24 * time.Hour)}}, // Recent event
+        {Timestamp: CustomTime{Time: time.Now().Add(-50 * time.Hour)}}, // Older event
+    }
 
-// Convert to time.Time
-func (ct CustomTime) ToTime() time.Time {
-    return ct.Time
+    handleLogs(events)
 }
