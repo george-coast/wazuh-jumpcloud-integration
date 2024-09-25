@@ -257,3 +257,24 @@ type JumpCloudPasswordManagerEvent struct {
     Operation    string    `json:"operation"`
     Timestamp   CustomTime `json:"timestamp"`
 }
+
+type JumpCloudAdminEvent struct {
+    JumpCloudEventType string    `json:"jumpcloud_event_type"`
+    InitiatedBy        struct {
+        ID       string `json:"id"`
+        Type     string `json:"type"`
+        Username string `json:"username"`
+        Email    string `json:"email,omitempty"` // Optional field
+    } `json:"initiated_by,omitempty"`
+    ErrorMessage       string    `json:"error_message,omitempty"`
+    EventType          string    `json:"event_type"`
+    Success            bool      `json:"success"`
+    Service            string    `json:"service"`
+    Organization       string    `json:"organization"`
+    Version            string    `json:"@version"`
+    ClientIP           string    `json:"client_ip,omitempty"`
+    ID                 string    `json:"id"`
+    Username           string    `json:"username"`
+    Operation          string    `json:"operation"`
+    Timestamp          CustomTime `json:"timestamp"`
+}
