@@ -256,5 +256,4 @@ type JumpCloudPasswordManagerEvent struct {
     Username     string    `json:"username"`
     Operation    string    `json:"operation"`
     Timestamp   CustomTime `json:"timestamp"`
-    Operation    string    `json:"operation"`
 }
