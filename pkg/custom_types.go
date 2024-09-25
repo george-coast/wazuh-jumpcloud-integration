@@ -1,27 +1,34 @@
 package pkg
 
 import (
-    "encoding/json"
     "time"
+    "fmt"
 )
 
-type CustomTime time.Time
+type CustomTime struct {
+    time.Time
+}
 
-// UnmarshalJSON parses the timestamp from JSON
-func (c *CustomTime) UnmarshalJSON(b []byte) error {
-    var t string
-    if err := json.Unmarshal(b, &t); err != nil {
-        return err
-    }
-    parsedTime, err := time.Parse(time.RFC3339, t)
+// UnmarshalJSON implements the json.Unmarshaler interface.
+func (ct *CustomTime) UnmarshalJSON(b []byte) error {
+    // Strip the quotes around the timestamp
+    s := string(b[1 : len(b)-1])
+
+    // Parse the time in the expected format
+    t, err := time.Parse(time.RFC3339, s) // Use your specific time format
     if err != nil {
         return err
     }
-    *c = CustomTime(parsedTime)
+    ct.Time = t
     return nil
 }
 
-// MarshalJSON converts the timestamp to JSON
-func (c CustomTime) MarshalJSON() ([]byte, error) {
-    return json.Marshal(time.Time(c).Format(time.RFC3339))
+// After is a method to compare CustomTime with another time.Time
+func (ct CustomTime) After(t time.Time) bool {
+    return ct.Time.After(t)
+}
+
+// Convert to time.Time
+func (ct CustomTime) ToTime() time.Time {
+    return ct.Time
 }
