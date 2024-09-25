@@ -37,8 +37,8 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 
 	// Process Directory events
 	for _, x := range e.Directory {
-		if x.Timestamp.After(lastEventSeen) {
-			lastEventSeen = x.Timestamp
+		if x.Timestamp.ToTime().After(lastEventSeen) {
+			lastEventSeen = x.Timestamp.ToTime()
 		}
 		if _, writeErr := f.WriteString(x.convertToWazuhString() + "\n"); writeErr != nil {
 			fmt.Printf("Error writing to file: %s", writeErr.Error())
@@ -47,8 +47,8 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 
 	// Process LDAP events
 	for _, x := range e.LDAP {
-		if x.Timestamp.After(lastEventSeen) {
-			lastEventSeen = x.Timestamp
+		if x.Timestamp.ToTime().After(lastEventSeen) {
+			lastEventSeen = x.Timestamp.ToTime()
 		}
 		if _, writeErr := f.WriteString(x.convertToWazuhString() + "\n"); writeErr != nil {
 			fmt.Printf("Error writing to file: %s", writeErr.Error())
@@ -57,8 +57,8 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 
 	// Process Systems events
 	for _, x := range e.Systems {
-		if x.Timestamp.After(lastEventSeen) {
-			lastEventSeen = x.Timestamp
+		if x.Timestamp.ToTime().After(lastEventSeen) {
+			lastEventSeen = x.Timestamp.ToTime()
 		}
 		if _, writeErr := f.WriteString(x.convertToWazuhString() + "\n"); writeErr != nil {
 			fmt.Printf("Error writing to file: %s", writeErr.Error())
@@ -67,8 +67,8 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 
 	// Process SSO events
 	for _, x := range e.SSO {
-		if x.Timestamp.After(lastEventSeen) {
-			lastEventSeen = x.Timestamp
+		if x.Timestamp.ToTime().After(lastEventSeen) {
+			lastEventSeen = x.Timestamp.ToTime()
 		}
 		if _, writeErr := f.WriteString(x.convertToWazuhString() + "\n"); writeErr != nil {
 			fmt.Printf("Error writing to file: %s", writeErr.Error())
@@ -77,8 +77,8 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 
 	// Process Password Manager events
 	for _, x := range e.PasswordManager {
-		if x.Timestamp.After(lastEventSeen) {
-			lastEventSeen = x.Timestamp
+		if x.Timestamp.ToTime().After(lastEventSeen) {
+			lastEventSeen = x.Timestamp.ToTime()
 		}
 		if _, writeErr := f.WriteString(x.convertToWazuhString() + "\n"); writeErr != nil {
 			fmt.Printf("Error writing to file: %s", writeErr.Error())
@@ -88,3 +88,4 @@ func RunService(timeTracker TimeTracker, j JumpCloudConnector, pathToLogFile str
 	err = timeTracker.UpdateLast(lastEventSeen.Add(time.Second))
 	return err
 }
+
