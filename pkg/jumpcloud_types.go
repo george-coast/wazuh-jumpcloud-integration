@@ -240,7 +240,7 @@ type JumpCloudPasswordManagerEvent struct {
         Type     string `json:"type"`
         Username string `json:"username"`
     } `json:"initiated_by"`
-    ErrorMessage string `json:"error_message"`
+    ErrorMessage string    `json:"error_message"`
     Account      struct {
         ID       string `json:"id"`
         Username string `json:"username"`
@@ -255,7 +255,7 @@ type JumpCloudPasswordManagerEvent struct {
     ID           string    `json:"id"`
     Username     string    `json:"username"`
     Operation    string    `json:"operation"`
-    Timestamp   CustomTime `json:"timestamp"`
+    Timestamp    CustomTime `json:"timestamp"`
 }
 
 type JumpCloudAdminEvent struct {
