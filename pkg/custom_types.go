@@ -2,6 +2,7 @@ package pkg
 
 import (
     "fmt"
+    "encoding/json"
     "time"
 )
 
@@ -14,11 +15,30 @@ type CustomTime struct {
 func (c *CustomTime) ToTime() time.Time {
     return c.Time
 }
-
+// UnmarshalJSON customizes the JSON unmarshalling for CustomTime.
+func (ct *CustomTime) UnmarshalJSON(b []byte) error {
+    // Remove the surrounding quotes
+    s := string(b)
+    if s == "null" {
+        return nil // Allow null values
+    }
+    
+    // Parse the time from the JSON string
+    parsedTime, err := time.Parse(`"`+time.RFC3339+`"`, s)
+    if err != nil {
+        return fmt.Errorf("could not parse time: %v", err)
+    }
+    ct.Time = parsedTime
+    return nil
+}
 // JumpCloudPasswordManagerEvent represents an event with a timestamp
 type JumpCloudPasswordManagerEvent struct {
     Timestamp CustomTime // Your struct may have additional fields
     // Other fields...
+}
+
+func (ct CustomTime) After(t time.Time) bool {
+    return ct.Time.After(t)
 }
 
 // handleLogs processes an array of JumpCloudPasswordManagerEvent
