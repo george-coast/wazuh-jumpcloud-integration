@@ -34,6 +34,7 @@ type JumpCloudLDAPEvent struct {
     ErrorCode       int       `json:"error_code"`
     ID              string    `json:"id"`
     OperationNumber int       `json:"operation_number"`
+    Operation       string    `json:"operation"`
     Timestamp       time.Time `json:"timestamp"`
     Username        string    `json:"username"`
     Deref           int       `json:"deref,omitempty"`
@@ -75,6 +76,7 @@ type JumpCloudSystemEvent struct {
     ClientIP        string    `json:"client_ip,omitempty"`
     SystemTimestamp time.Time `json:"system_timestamp,omitempty"`
     ID              string    `json:"id"`
+    Operation       string    `json:"operation"`
     Timestamp       time.Time `json:"timestamp"`
     Username        string    `json:"username,omitempty"`
     ProcessName     string    `json:"process_name,omitempty"`
@@ -141,6 +143,7 @@ type JumpCloudDirectoryEvent struct {
     Version      string    `json:"@version"`
     ClientIP     string    `json:"client_ip,omitempty"`
     ID           string    `json:"id"`
+    Operation    string    `json:"operation"`
     Timestamp    time.Time `json:"timestamp"`
 }
 
@@ -187,6 +190,7 @@ type JumpCloudRadiusEvent struct {
     ClientIP     string    `json:"client_ip"`
     ID           string    `json:"id"`
     Username     string    `json:"username"`
+    Operation    string    `json:"operation"`
     Timestamp    time.Time `json:"timestamp"`
 }
 
@@ -225,6 +229,7 @@ type JumpCloudSSOEvent struct {
     ClientIP     string    `json:"client_ip"`
     ID           string    `json:"id"`
     Username     string    `json:"username"`
+    Operation    string    `json:"operation"`
     Timestamp    time.Time `json:"timestamp"`
 }
 
@@ -249,6 +254,7 @@ type JumpCloudPasswordManagerEvent struct {
     ClientIP     string    `json:"client_ip"`
     ID           string    `json:"id"`
     Username     string    `json:"username"`
-    Timestamp    time.Time `json:"timestamp"`
+    Operation    string    `json:"operation"`
+    Timestamp    string      `json:"timestamp"`
     Operation    string    `json:"operation"`
 }
