@@ -11,65 +11,30 @@ import (
 // that can be consumed by Wazuh for logging and monitoring.
 
 // Convert to Wazuh string for various event types
-func (d *JumpCloudPasswordManagerEvent) convertToWazuhString() string {
-    d.JumpCloudEventType = "password_manager" // Set the event type
-    b, err := json.Marshal(d) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling Password Manager event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
+func (e *JumpCloudLDAPEvent) convertToWazuhString() string {
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.OperationType, e.Timestamp)
 }
 
-func (d *JumpCloudSSOEvent) convertToWazuhString() string {
-    d.JumpCloudEventType = "sso" // Set the event type
-    b, err := json.Marshal(d) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling SSO event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
+func (e *JumpCloudSSOEvent) convertToWazuhString() string {
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.ErrorMessage, e.Timestamp)
 }
 
 func (d *JumpCloudAdminEvent) convertToWazuhString() string {
-    d.JumpCloudEventType = "admin" // Set the event type
-    b, err := json.Marshal(d) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling Admin event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
+	return fmt.Sprintf("Admin Event: %s initiated by %s at %s", d.EventType, d.InitiatedBy.Username, d.Timestamp)
 }
 
-func (e JumpCloudLDAPEvent) convertToWazuhString() string {
-    e.JumpCloudEventType = "ldap" // Set the event type
-    b, err := json.Marshal(e) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling LDAP event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
+func (e *JumpCloudPasswordManagerEvent) convertToWazuhString() string {
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Operation, e.Timestamp)
 }
 
-func (e JumpCloudSystemEvent) convertToWazuhString() string {
-    e.JumpCloudEventType = "system" // Set the event type
-    b, err := json.Marshal(e) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling System event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
+func (e *JumpCloudSystemEvent) convertToWazuhString() string {
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.Message, e.Timestamp)
+}
+func (e *JumpCloudRadiusEvent) convertToWazuhString() string {
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.AuthType, e.Timestamp)
 }
 
-func (e JumpCloudRadiusEvent) convertToWazuhString() string {
-    e.JumpCloudEventType = "radius" // Set the event type
-    b, err := json.Marshal(e) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling Radius event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
+func (e *JumpCloudDirectoryEvent) convertToWazuhString() string {
+	return fmt.Sprintf("%s: %s on %s", e.EventType, e.ErrorMessage, e.Timestamp)
 }
 
-func (e JumpCloudDirectoryEvent) convertToWazuhString() string {
-    e.JumpCloudEventType = "directory" // Set the event type
-    b, err := json.Marshal(e) // Convert the struct to JSON
-    if err != nil {
-        return fmt.Sprintf("Error marshaling Directory event: %s", err) // Handle marshaling error
-    }
-    return string(b) // Return the JSON string
-}
